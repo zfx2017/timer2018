@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private Timer timer1;
     private TextView textView;
     private TimerTask timerTask;
+    Boolean zfx = true;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,21 @@ public class MainActivity extends AppCompatActivity {
         int min = cnt % 3600 / 60;
         int second = cnt % 60;
         return String.format(Locale.CHINA,"%02d:%02d:%02d",hour,min,second);
+    }
+    public int lengthOfLastWord(String s) {
+        int j = 0;
+        Boolean zfx = false;
+        char [] ch=s.toCharArray();
+        a:for (int i = ch.length-1; i >= 0; i--) {
+            if (Character.isSpaceChar(ch[i])&&zfx == true) {
+                break a;
+            }else{
+                j++;
+                zfx = true;
+            }
+        }
+        return j;
+
     }
     public void stopClick1(View view) {
         if (!timerTask.cancel()){
